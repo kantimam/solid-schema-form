@@ -1,35 +1,27 @@
 import type { Component } from "solid-js";
-
-import logo from "./logo.svg";
-import styles from "./App.module.css";
 import JsonForm from "./components/JsonForm";
+import { CallbacksProvider } from "./context/CallbacksMapContext";
+import { ComponentsProvider } from "./context/ComponentsMapContext";
+import { ValidatorsProvider } from "./context/ValidatorsMapContext";
+import { FormJsonSchema } from "./types/jsonForm";
 
-
-
-const SCHEMA={
-    elements: [
-        {type: 'form'},
-        {type: 'input'},
-        {type: 'input'},
-        {type: 'input'},
-        {type: 'input'},
-    ]
+interface JsonFormAppProps {
+    componentsMap: any;
+    callbacksMap?: any;
+    validatorsMap?: any;
+    formJsonSchema: FormJsonSchema
 }
 
-const App: Component = () => {
-  return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <JsonForm type="form">
-            <button className="o-submit" type="submit">submit</button>
-        </JsonForm>
-      </header>
-    </div>
-  );
+const App: Component<JsonFormAppProps> = (props) => {
+    return (
+        <ComponentsProvider context={props.componentsMap}>
+            <ValidatorsProvider context={props.validatorsMap}>
+                <CallbacksProvider context={props.callbacksMap}>
+                    <JsonForm formSchema={props.formJsonSchema}/>
+                </CallbacksProvider>
+            </ValidatorsProvider>
+        </ComponentsProvider>
+    )    
 };
 
 export default App;

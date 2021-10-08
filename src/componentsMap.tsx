@@ -1,4 +1,7 @@
 import type { Component } from "solid-js";
+import Col from "./components/Col";
+import Input from "./components/Input";
+import Row from "./components/Row";
 
 interface componentsObject {
     [key: string]: Component
@@ -6,7 +9,11 @@ interface componentsObject {
 
 const componentsMap: componentsObject ={
     'form': (props: any)=><form>{props.children}</form>,
-    'input': ()=><input/>
+    'GridRow': Row,
+    'GridCol': Col,
+    'Text': Input,
+    'default': Input
+
 }
 
 

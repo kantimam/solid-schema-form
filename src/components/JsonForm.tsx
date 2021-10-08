@@ -1,9 +1,19 @@
-import type { Component, PropsWithChildren } from "solid-js";
-import componentsMap from "../componentsMap";
+import type { Component } from "solid-js";
+import { FormJsonSchema } from "../types/jsonForm";
+import JsonComponentList from "./JsonComponentList";
 
-const JsonForm: Component<{type: string}> = (props: PropsWithChildren<any>) => {
-    const element: Component=componentsMap[props.type];
-    return element(props);
+
+
+
+const JsonForm: Component<{formSchema: FormJsonSchema}> = (props) => {
+    
+    return (
+        <form
+            class="solid-form container"
+        >
+            <JsonComponentList elements={props.formSchema.elements}/>
+        </form>
+    )
 };
 
 export default JsonForm;
