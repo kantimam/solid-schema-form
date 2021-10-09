@@ -1,13 +1,13 @@
-import type { Component } from "solid-js";
+import { Component, For } from "solid-js";
 import { FormElement } from "../types/jsonForm";
-import JsonComponentList from "./JsonComponentList";
+import Col from "./Col";
 
 
 const Row: Component<FormElement> = (props) => {
-    console.log(props)
-    return <div class="m2" {...props}>
-        row
-       <JsonComponentList elements={props.elements}/>
+    return <div class="grid grid-cols-12">
+        <For each={props.elements}>
+            {element=><Col {...element}/>}
+        </For>
     </div>;
 };
 

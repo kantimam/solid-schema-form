@@ -17,7 +17,7 @@ const App: Component<JsonFormAppProps> = (props) => {
         <ComponentsProvider context={props.componentsMap}>
             <ValidatorsProvider context={props.validatorsMap}>
                 <CallbacksProvider context={props.callbacksMap}>
-                    <JsonForm formSchema={props.formJsonSchema}/>
+                    <JsonForm formSchema={props.formJsonSchema}></JsonForm>
                 </CallbacksProvider>
             </ValidatorsProvider>
         </ComponentsProvider>

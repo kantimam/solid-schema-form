@@ -15,8 +15,9 @@ export interface FormElement {
     type: string;
     identifier: string;
     label?: string;
+    name?: string;
     defaultValue?: string;
-    properties: FormElementProps | [];
+    properties: FormElementProps;
     elements?: FormElement[];
 }
 
