@@ -1,5 +1,4 @@
 import type { Component } from "solid-js";
-import { onMount, onCleanup } from "solid-js";
 import { FormElement } from "../types/jsonForm";
 
 
@@ -23,7 +22,7 @@ const onInput=(event: InputEvent)=>{
  */
 const Input: Component<FormElement> = (props) => {
     let inputRef;
-    
+
     return (
         <label class="block py-2 m-4 outline-black bg-green-500 rounded s-field">
             <span class="s-field-label">{props.label}</span>
@@ -33,7 +32,6 @@ const Input: Component<FormElement> = (props) => {
                 ref={inputRef}
                 required
                 {...props}
-
             />
             <span className="s-field-info">
                 info

@@ -4,16 +4,10 @@ import JsonComponentList from "./JsonComponentList";
 
 
 function createValidatorsMap(elements){
-
+    
 }
 
 const JsonForm: Component<{formSchema: FormJsonSchema}> = (props) => {
-    
-    
-    props.formSchema.elements.map(element=>{
-        console.log("creating validator");        
-    })
-    
     const handleSubmit=(event: SubmitEvent)=>{
         event.preventDefault();
         const form=event.target as  HTMLFormElement;
@@ -24,11 +18,13 @@ const JsonForm: Component<{formSchema: FormJsonSchema}> = (props) => {
 
         }
     }
+    const submitFormRef=(formRef: HTMLFormElement)=>{
+        console.log("submit")
+    }
 
     return (
         <form
             class="solid-form container"
-            onSubmit={handleSubmit}
         >
             <JsonComponentList elements={props.formSchema.elements}/>
             

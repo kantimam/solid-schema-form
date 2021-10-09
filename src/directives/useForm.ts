@@ -23,18 +23,20 @@ function checkValid({ element, validators = [] }, setErrors, errorClass) {
 }
 
 export function useForm({ errorClass }) {
-  const [errors, setErrors] = createStore({}),
-    fields = {};
+  const [errors, setErrors] = createStore({})
+  const [values, setValues] = createStore({})
+  const fields = {};
 
-  const validate = (ref, accessor) => {
+  const handleInput = (ref, accessor) => {
     const validators = accessor() || [];
     let config;
     fields[ref.name] = config = { element: ref, validators };
     ref.onblur = checkValid(config, setErrors, errorClass);
-    ref.oninput = () => {
+    ref.oninput = (event: InputEvent) => {
       if (!errors[ref.name]) return;
       setErrors({ [ref.name]: undefined });
       errorClass && ref.classList.toggle(errorClass, false);
+      setValues({ [ref.name]: (event.target as HTMLInputElement).value });
     };
   };
 
@@ -57,5 +59,5 @@ export function useForm({ errorClass }) {
     };
   };
 
-  return { validate, formSubmit, errors };
+  return { handleInput, formSubmit, values, errors };
 }
